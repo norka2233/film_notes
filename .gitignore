@@ -1,0 +1,9 @@
+.idea/
+
+venv/
+task_2/
+task_1.py
+.DS_Store
+.gitattributes
+*.csv
+
