@@ -25,6 +25,7 @@ create_csv()
 def read_file(file):
     with open(file, 'r') as f:
         reader = csv.reader(f)
+        return reader
             
 
 
