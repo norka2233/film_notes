@@ -38,8 +38,8 @@ class Note:
         self.rating = rating
 
     def add_note(self, file):
-        if not isinstance(self.film_name, str) or isinstance(self.note, str):
-            return TypeError
+        # if not isinstance(self.film_name, str) or isinstance(self.note, str):
+        #     return TypeError
 
         with open(file, 'a', encoding='UTF8', newline='') as f:
             input_data = [self.film_name, self.note, self.rating]
@@ -49,6 +49,8 @@ class Note:
 
     def remove_note(self, film_name):
         lines = []
+        if not isinstance(film_name, str):
+            return TypeError
         with open('film_notes.csv', 'r') as f:
             reader = csv.reader(f)
             for row in reader:
@@ -96,10 +98,13 @@ class Note:
 note_1 = Note('Spywoman', 'wonderful', 4.7)
 note_2 = Note('Spychildren', 'perfect', 4.5)
 note_3 = Note('Alice in Wonderland', 'nice', 4)
+note_4 = Note('Charlie and the Chocolate Fabric', 'super interesting', 5)
+
 
 note_1.add_note('film_notes.csv')
-# note_2.add_note('film_notes.csv')
-# note_3.add_note('film_notes.csv')
+# note_4.add_note('film_notes.csv')
+note_2.add_note('film_notes.csv')
+note_3.add_note('film_notes.csv')
 #
 # note_1.print_note('Spywoman')
 #
