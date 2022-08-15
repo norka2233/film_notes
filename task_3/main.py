@@ -1,6 +1,5 @@
 import csv
-# from csv import writer
-# import pandas as pd
+
 
 
 def create_csv():
@@ -10,9 +9,9 @@ def create_csv():
         writer = csv.DictWriter(file, fieldnames=fieldnames)
 
         writer.writeheader()
-        writer.writerow({"film_name": "Harry Potter and Philosopher's Stone", "note": "watch again, perfect", "rate": 2})
-        writer.writerow({"film_name": "Harry Potter and Chamber of Secrets", "note": "watch again, scary", "rate": 3.5})
-        writer.writerow({"film_name": "Harry Potter and Prisoner of Azkaban", "note": "okay", "rate": 4})
+        writer.writerow({"film_name": "Harry Potter and Philosopher's Stone", "note": "watch again, perfect", "rate": 5})
+        writer.writerow({"film_name": "Harry Potter and Chamber of Secrets", "note": "watch again, scary", "rate": 4.5})
+        writer.writerow({"film_name": "Harry Potter and Prisoner of Azkaban", "note": "okay", "rate": 3.5})
         writer.writerow({"film_name": "Harry Potter and Goblet of Fire", "note": "amazing, definitely watch again", "rate": 5})
         writer.writerow({"film_name": "Harry Potter and Order of the Phoenix", "note": "normal, book much better", "rate": 3})
         writer.writerow({"film_name": "Harry Potter and Half-Blood Prince", "note": "dislike the movie", "rate": 2.5})
@@ -27,8 +26,6 @@ def read_file(file):
     with open(file, 'r') as f:
         reader = csv.reader(f)
             
-
-# read_file('film_notes.csv')
 
 
 class Note:
@@ -69,9 +66,8 @@ class Note:
         with open('film_notes.csv', 'r', newline='') as file:
             dict_reader = list(csv.DictReader(file))
             top_rate = func(dict_reader, key=lambda x: x['rate']).get('rate')
-            print(top_rate)
             top_films = [film['film_name'] for film in dict_reader if film['rate'] == top_rate]
-            print(f"The {func.__name__} rate is  of the film(s) {top_films}")
+            print(f"The {func.__name__} rate is <{top_rate}>  of the film(s) {top_films}")
             return top_films
 
     def get_lowest_rate(self):
@@ -79,18 +75,6 @@ class Note:
 
     def get_highest_rate(self):
         return self.get_rate(max)
-
-    # def get_lowest_rate(self):
-    #     with open('film_notes.csv', 'r', newline='') as file:
-    #         dict_reader = csv.DictReader(file)
-    #         rate_list = []
-    #         low_rated_films = []
-    #         for i in dict_reader:
-    #             rate_list.append(i['rate'])
-    #             if i['rate'] == min(rate_list):
-    #                 print("yess")
-    #                 low_rated_films.append(i['film_name'])
-    #         return print(f"The lowest rate is {min(rate_list)} of the film(s) {low_rated_films}")
 
     def get_average_rate(self):
         with open('film_notes.csv', 'r', newline='') as file:
@@ -112,9 +96,9 @@ note_1.add_note('film_notes.csv')
 note_2.add_note('film_notes.csv')
 note_3.add_note('film_notes.csv')
 
-# note_1.print_note('Spywoman')
+note_1.print_note('Spywoman')
 
-# note_1.remove_note('Spychildren')
+note_1.remove_note('Spychildren')
 
 note_1.get_highest_rate()
 
@@ -122,5 +106,3 @@ note_1.get_lowest_rate()
 
 note_1.get_average_rate()
 
-
-read_file('film_notes.csv')
