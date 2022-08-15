@@ -1,7 +1,6 @@
 import csv
 
 
-
 def create_csv():
 
     with open("film_notes.csv", "w") as file:
@@ -26,7 +25,9 @@ def read_file(file):
     with open(file, 'r') as f:
         reader = csv.reader(f)
         return reader
-            
+
+
+read_file('film_notes.csv')
 
 
 class Note:
@@ -37,11 +38,14 @@ class Note:
         self.rating = rating
 
     def add_note(self, file):
+        if not isinstance(self.film_name, str) or isinstance(self.note, str):
+            return TypeError
+
         with open(file, 'a', encoding='UTF8', newline='') as f:
             input_data = [self.film_name, self.note, self.rating]
             writer = csv.writer(f)
             writer.writerow([i for i in input_data])
-            return print(f"Added '{self.film_name}' to the file '{file}'")
+            return f"Added '{self.film_name}' to the file '{file}'"
 
     def remove_note(self, film_name):
         lines = []
@@ -54,7 +58,7 @@ class Note:
         with open('film_notes.csv', 'w') as f:
             writer = csv.writer(f)
             [writer.writerow(row) for row in lines]
-            print(f"Film {film_name} was removed from list")
+            return f"Film {film_name} was removed from list"
 
     def print_note(self, film_name):
         notes = []
@@ -89,21 +93,21 @@ class Note:
 
 
 
-note_1 = Note('Spywoman', 'funny', 5)
+note_1 = Note('Spywoman', 'wonderful', 4.7)
 note_2 = Note('Spychildren', 'perfect', 4.5)
 note_3 = Note('Alice in Wonderland', 'nice', 4)
 
 note_1.add_note('film_notes.csv')
-note_2.add_note('film_notes.csv')
-note_3.add_note('film_notes.csv')
-
-note_1.print_note('Spywoman')
-
-note_1.remove_note('Spychildren')
-
-note_1.get_highest_rate()
-
-note_1.get_lowest_rate()
-
-note_1.get_average_rate()
+# note_2.add_note('film_notes.csv')
+# note_3.add_note('film_notes.csv')
+#
+# note_1.print_note('Spywoman')
+#
+# note_1.remove_note('Spychildren')
+#
+# note_1.get_highest_rate()
+#
+# note_1.get_lowest_rate()
+#
+# note_1.get_average_rate()
 
